@@ -13,7 +13,7 @@ describe('withDefaults', () => {
   })
 
   describe('when given a default apiKey', () => {
-    let scope, result
+    let scope
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
@@ -37,7 +37,7 @@ describe('withDefaults', () => {
   })
 
   describe('when given a default hotelID', () => {
-    let scope, result
+    let scope
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {

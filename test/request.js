@@ -30,7 +30,7 @@ describe('makeImpalaRequest (async)', () => {
   })
 
   describe('given a valid path and auth token', () => {
-    let scope, result
+    let scope
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
@@ -52,8 +52,32 @@ describe('makeImpalaRequest (async)', () => {
     })
   })
 
-  describe('given a request that returns an error', () => {
-    let scope, result
+  describe('given a request that returns an HTTP 204 (No Content) response', () => {
+    let scope
+    beforeEach(async () => {
+      scope = nock('https://api.getimpala.com', {
+        reqheaders: {
+          Authorization: 'Bearer testToken',
+          'X-API-Key': 'testToken'
+        }
+      })
+        .get('/v1/path/to/endpoint')
+        .reply(204)
+    })
+
+    afterEach(() => {
+      scope.done()
+    })
+
+    it('should return null', async () => {
+      const result = await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken')
+      expect(result).to.equal(null)
+      expect(scope.isDone()).to.equal(true)
+    })
+  })
+
+  describe('given a request that returns an HTTP 400 (Bad Request) error', () => {
+    let scope
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
@@ -80,6 +104,18 @@ describe('makeImpalaRequest (async)', () => {
       expect(threw).to.equal(true)
       expect(scope.isDone()).to.equal(true)
     })
+  })
+
+  describe('given an overridden fetch method', () => {
+    it('should fetch using the overridden method')
+  })
+
+  describe('given an overridden base URL', () => {
+    it('should fetch using the overridden base URL')
+  })
+
+  describe('given an extra set of headers', () => {
+    it('should fetch with the additional headers specified')
   })
 })
 

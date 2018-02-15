@@ -24,8 +24,12 @@ export const makeImpalaRequest = async (
       'User-Agent': userAgent,
       ...makeAuthorizationHeaders(apiKey),
       ...headers
-    },
+    }
   })
+
+  if (request.status === 204) {
+    return null
+  }
 
   let json
   try {

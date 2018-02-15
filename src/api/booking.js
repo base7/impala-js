@@ -4,14 +4,18 @@ export const getBookings = async ({ apiKey, hotelID }, requestOptions) => {
   if (!apiKey) {
     throw new Error('getBookings requires an apiKey')
   }
+
   if (!hotelID) {
     throw new Error('getBookings requires a hotelID')
   }
-  return makeImpalaRequest(
+
+  const bookings = await makeImpalaRequest(
     ['hotel', hotelID, 'booking'],
     apiKey,
     requestOptions
   )
+
+  return bookings || null
 }
 
 export const getBookingByID = async (
@@ -21,13 +25,16 @@ export const getBookingByID = async (
   if (!apiKey) {
     throw new Error('getBookingByID requires an apiKey')
   }
+
   if (!hotelID) {
     throw new Error('getBookingByID requires a hotelID')
   }
+
   if (!bookingID) {
     throw new Error('getBookingByID requires a bookingID')
   }
-  return makeImpalaRequest(
+
+  return await makeImpalaRequest(
     ['hotel', hotelID, 'booking', bookingID],
     apiKey,
     requestOptions

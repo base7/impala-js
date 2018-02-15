@@ -3,7 +3,7 @@ import nock from 'nock'
 import { getRooms, getRoomByID } from '../../src/api/room'
 
 describe('getRooms', () => {
-  let scope, result
+  let scope
   beforeEach(async () => {
     scope = nock('https://api.getimpala.com', {
       reqheaders: {
@@ -26,7 +26,7 @@ describe('getRooms', () => {
 })
 
 describe('getRoomByID', () => {
-  let scope, result
+  let scope
   beforeEach(async () => {
     scope = nock('https://api.getimpala.com', {
       reqheaders: {

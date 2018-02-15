@@ -3,7 +3,7 @@ import nock from 'nock'
 import { getGuests, getGuestByID } from '../../src/api/guest'
 
 describe('getGuests', () => {
-  let scope, result
+  let scope
   beforeEach(async () => {
     scope = nock('https://api.getimpala.com', {
       reqheaders: {
@@ -26,7 +26,7 @@ describe('getGuests', () => {
 })
 
 describe('getGuestByID', () => {
-  let scope, result
+  let scope
   beforeEach(async () => {
     scope = nock('https://api.getimpala.com', {
       reqheaders: {

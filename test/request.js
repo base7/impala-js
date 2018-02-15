@@ -51,6 +51,36 @@ describe('makeImpalaRequest (async)', () => {
       expect(scope.isDone()).to.equal(true)
     })
   })
+
+  describe('given a request that returns an error', () => {
+    let scope, result
+    beforeEach(async () => {
+      scope = nock('https://api.getimpala.com', {
+        reqheaders: {
+          Authorization: 'Bearer testToken',
+          'X-API-Key': 'testToken'
+        }
+      })
+        .get('/v1/path/to/endpoint')
+        .reply(400, { message: 'You did something wrong!'})
+    })
+
+    afterEach(() => {
+      scope.done()
+    })
+
+    it('should throw the error message as an Error', async () => {
+      let threw
+      try {
+        await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken')
+      } catch (e) {
+        threw = true
+        expect(e.message).to.equal('You did something wrong!')
+      }
+      expect(threw).to.equal(true)
+      expect(scope.isDone()).to.equal(true)
+    })
+  })
 })
 
 describe('makeAuthorizationHeaders', () => {

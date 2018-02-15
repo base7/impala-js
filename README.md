@@ -24,7 +24,7 @@ All methods require (at least) the following two parameters as part of their fir
 
 To provide these by default, you can use the [`withDefaults`](#withdefaults) method to return an instance of the API with one or more of these values set by default.
 
-### Request options
+### Request Options
 
 The second argument of all API methods is an optional object, containing options around how to make HTTP requests. The following keys are accepted:
 
@@ -44,9 +44,18 @@ Gets all bookings for a specific hotel.
 
 Only requires the [base parameters][base-parameters].
 
-#### Return value
+#### Return Value
 
 Returns a Promise, which resolves to an array of [Booking][type-ref-booking] objects.
+
+#### Example Usage
+
+```js
+import { getBookings } from 'impala-js'
+
+getBookings({ apiKey: 'XXX', hotelID: 'YYY' })
+  .then(bookings => console.log('All bookings:', bookings))
+```
 
 ### `getBookingByID`
 
@@ -58,9 +67,18 @@ In addition to the required [base parameters][base-parameters]:
 
 * `bookingID`: The unique of the booking that you wish to query.
 
-#### Return value
+#### Return Value
 
 Returns a Promise, which resolves to a [Booking][type-ref-booking] object.
+
+#### Example Usage
+
+```js
+import { getBookingByID } from 'impala-js'
+
+getBookingByID({ apiKey: 'XXX', hotelID: 'YYY', bookingID: 'ZZZ' })
+  .then(booking => console.log('Booking:', booking))
+```
 
 ### `getGuests`
 
@@ -70,9 +88,18 @@ Gets all guests for a specific hotel.
 
 Only requires the [base parameters][base-parameters].
 
-#### Return value
+#### Return Value
 
 Returns a Promise, which resolves to an array of [Guest][type-ref-guest] objects.
+
+#### Example Usage
+
+```js
+import { getGuests } from 'impala-js'
+
+getGuests({ apiKey: 'XXX', hotelID: 'YYY' })
+  .then(guests => console.log('All guests:', guests))
+```
 
 ### `getGuestByID`
 
@@ -84,9 +111,18 @@ In addition to the required [base parameters][base-parameters]:
 
 * `guestID`: The unique of the guest that you wish to query.
 
-#### Return value
+#### Return Value
 
 Returns a Promise, which resolves to a [Guest][type-ref-guest] object.
+
+#### Example Usage
+
+```js
+import { getGuestByID } from 'impala-js'
+
+getGuestByID({ apiKey: 'XXX', hotelID: 'YYY', guestID: 'ZZZ' })
+  .then(guest => console.log('Guest:', guest))
+```
 
 ### `getRooms`
 
@@ -95,6 +131,19 @@ Gets all rooms for a specific hotel.
 #### Parameters
 
 Only requires the [base parameters][base-parameters].
+
+#### Return Value
+
+Returns a Promise, which resolves to an array of [Room][type-ref-room] objects.
+
+#### Example Usage
+
+```js
+import { getRooms } from 'impala-js'
+
+getRooms({ apiKey: 'XXX', hotelID: 'YYY' })
+  .then(rooms => console.log('All rooms:', rooms))
+```
 
 ### `getRoomByID`
 
@@ -105,6 +154,19 @@ Gets a room for a specific hotel.
 In addition to the required [base parameters][base-parameters]:
 
 * `roomID`: The unique of the room that you wish to query.
+
+#### Return Value
+
+Returns a Promise, which resolves to a [Room][type-ref-room] object.
+
+#### Example Usage
+
+```js
+import { getRoomByID } from 'impala-js'
+
+getRoomByID({ apiKey: 'XXX', hotelID: 'YYY', roomID: 'ZZZ' })
+  .then(room => console.log('Room:', room))
+```
 
 ## Utility Methods
 

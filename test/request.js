@@ -1,4 +1,4 @@
-import { expect, use } from 'chai'
+import { expect } from 'chai'
 import nock from 'nock'
 import { makeImpalaRequest, makeAuthorizationHeaders } from '../src/request'
 

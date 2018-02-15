@@ -8,7 +8,7 @@
   "scripts": {
     "build": "babel src --out-dir dist",
     "watch": "yarn build --watch",
-    "test": "mocha --require babel-register",
+    "test": "mocha --require babel-register test test/**/*.js",
     "prepublishOnly": "yarn run build"
   },
   "devDependencies": {

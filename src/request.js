@@ -29,7 +29,7 @@ export const makeImpalaRequest = async (
 
   let json
   try {
-    json = await res.json()
+    json = await request.json()
   } catch (e) {
     throw new Error('Impala API returned an invalid response')
   }

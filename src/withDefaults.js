@@ -1,4 +1,4 @@
-import api from './api'
+import * as api from './api'
 
 const withDefaults = (paramOverrides = {}, requestOptionOverrides = {}) =>
   Object.entries(api).reduce((hotel, [name, method]) => {

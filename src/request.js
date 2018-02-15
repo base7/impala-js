@@ -6,25 +6,44 @@ const userAgent = `${pkg.name}/${pkg.version}`
 
 export const makeImpalaRequest = async (
   path,
-  authToken,
-  { fetch = defaultFetch, baseUrl, headers = {} } = {}
+  apiKey,
+  { fetch = defaultFetch, baseUrl, headers = {}, ...fetchOptions } = {}
 ) => {
   if (!path) {
     throw new Error('You must supply a path!')
   }
-  if (!authToken) {
-    throw new Error('No authToken was supplied')
+  if (!apiKey) {
+    throw new Error('No apiKey was supplied')
   }
 
   const url = makeImpalaUrl(path, baseUrl)
 
   const request = await fetch(url, {
+    ...fetchOptions,
     headers: {
       'User-Agent': userAgent,
-      ...makeAuthorizationHeaders(authToken),
+      ...makeAuthorizationHeaders(apiKey),
       ...headers
-    }
+    },
   })
+
+  let json
+  try {
+    json = await res.json()
+  } catch (e) {
+    throw new Error('Impala API returned an invalid response')
+  }
+
+  if (request.status === 400) {
+    throw new Error(json.message)
+  }
+
+  if (!request.ok) {
+    throw new Error(
+      `Impala API return a HTTP ${request.status} error (${request.statusText})`
+    )
+  }
+  return json
 }
 
 export const makeAuthorizationHeaders = token => ({

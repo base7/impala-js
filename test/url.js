@@ -20,7 +20,10 @@ describe('makeImpalaUrl', () => {
 
   describe('given an overridden base URL', () => {
     it('should use the overridden base URL instead', () => {
-      const actual = makeImpalaUrl(['path', 'to', 'endpoint'], 'http://0.0.0.0/')
+      const actual = makeImpalaUrl(
+        ['path', 'to', 'endpoint'],
+        'http://0.0.0.0/'
+      )
       const expected = 'http://0.0.0.0/path/to/endpoint'
       expect(actual).to.equal(expected)
     })

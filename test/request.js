@@ -41,9 +41,11 @@ describe('makeImpalaRequest (async)', () => {
         .get('/v1/path/to/endpoint')
         .reply(200, { test: 'success' })
     })
+
     afterEach(() => {
       scope.done()
     })
+
     it('should make a request to the correct URL, with the correct headers', async () => {
       await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken')
       expect(scope.isDone()).to.equal(true)

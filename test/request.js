@@ -1,9 +1,6 @@
 import { expect, use } from 'chai'
-import chaiAsPromised from 'chai-as-promised'
 import nock from 'nock'
 import { makeImpalaRequest, makeAuthorizationHeaders } from '../src/request'
-
-use(chaiAsPromised)
 
 describe('makeImpalaRequest (async)', () => {
   describe('given no parameters', () => {

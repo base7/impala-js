@@ -1,4 +1,4 @@
-import defaultFetch from 'node-fetch'
+import fetch from 'node-fetch'
 import makeImpalaUrl from './url'
 import pkg from '../package.json'
 
@@ -7,7 +7,7 @@ const userAgent = `${pkg.name}/${pkg.version}`
 export const makeImpalaRequest = async (
   path,
   apiKey,
-  { fetch = defaultFetch, baseUrl, headers = {}, ...fetchOptions } = {}
+  { baseUrl, headers = {}, ...fetchOptions } = {}
 ) => {
   if (!path) {
     throw new Error('You must supply a path!')

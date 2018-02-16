@@ -95,7 +95,7 @@ The API methods all return Promises, which means you can use the `.then` (and `.
 ```js
 async function getAllHapiGuests() {
   try {
-    return hapiHotel.getGuests()
+    return await hapiHotel.getGuests()
   } catch (error) {
     console.error('Something went horribly wrong!', error.stack)
   }

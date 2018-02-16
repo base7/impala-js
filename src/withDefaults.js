@@ -5,7 +5,7 @@ const withDefaults = (paramOverrides = {}, requestOptionOverrides = {}) => {
     throw new Error('You must pass an apiKey parameter')
   }
   return Object.entries(api).reduce((hotel, [name, method]) => {
-    hotel[name] = (params, requestOptions) =>
+    hotel[name] = (params = {}, requestOptions = {}) =>
       method(
         { ...params, ...paramOverrides },
         { ...requestOptions, ...requestOptionOverrides }

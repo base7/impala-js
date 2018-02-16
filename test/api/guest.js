@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import nock from 'nock'
-import { getGuests, getGuestByID } from '../../src/api/guest'
+import { getGuests, getGuestById } from '../../src/api/guest'
 
 describe('getGuests', () => {
   let scope
@@ -19,13 +19,13 @@ describe('getGuests', () => {
     scope.done()
   })
 
-  it('should call the GET /hotel/:hotelID/guest endpoint', async () => {
-    await getGuests({ apiKey: 'testToken', hotelID: 'HOTEL' })
+  it('should call the GET /hotel/:hotelId/guest endpoint', async () => {
+    await getGuests({ apiKey: 'testToken', hotelId: 'HOTEL' })
     expect(scope.isDone()).to.equal(true)
   })
 })
 
-describe('getGuestByID', () => {
+describe('getGuestById', () => {
   let scope
   beforeEach(async () => {
     scope = nock('https://api.getimpala.com', {
@@ -42,11 +42,11 @@ describe('getGuestByID', () => {
     scope.done()
   })
 
-  it('should call the GET /hotel/:hotelID/guest/:guestID endpoint', async () => {
-    await getGuestByID({
+  it('should call the GET /hotel/:hotelId/guest/:guestId endpoint', async () => {
+    await getGuestById({
       apiKey: 'testToken',
-      hotelID: 'HOTEL',
-      guestID: 'GUEST'
+      hotelId: 'HOTEL',
+      guestId: 'GUEST'
     })
     expect(scope.isDone()).to.equal(true)
   })

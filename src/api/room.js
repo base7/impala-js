@@ -1,16 +1,16 @@
 import makeImpalaRequest from '../request'
 
-export const getRooms = async ({ apiKey, hotelID }, requestOptions) => {
+export const getRooms = async ({ apiKey, hotelId }, requestOptions) => {
   if (!apiKey) {
     throw new Error('getRooms requires an apiKey')
   }
 
-  if (!hotelID) {
-    throw new Error('getRooms requires a hotelID')
+  if (!hotelId) {
+    throw new Error('getRooms requires a hotelId')
   }
 
   const rooms = await makeImpalaRequest(
-    ['hotel', hotelID, 'room'],
+    ['hotel', hotelId, 'room'],
     apiKey,
     requestOptions
   )
@@ -18,24 +18,24 @@ export const getRooms = async ({ apiKey, hotelID }, requestOptions) => {
   return []
 }
 
-export const getRoomByID = async (
-  { apiKey, hotelID, roomID },
+export const getRoomById = async (
+  { apiKey, hotelId, roomId },
   requestOptions
 ) => {
   if (!apiKey) {
-    throw new Error('getRoomByID requires an apiKey')
+    throw new Error('getRoomById requires an apiKey')
   }
 
-  if (!hotelID) {
-    throw new Error('getRoomByID requires a hotelID')
+  if (!hotelId) {
+    throw new Error('getRoomById requires a hotelId')
   }
 
-  if (!roomID) {
-    throw new Error('getRoomByID requires a roomID')
+  if (!roomId) {
+    throw new Error('getRoomById requires a roomId')
   }
 
   return await makeImpalaRequest(
-    ['hotel', hotelID, 'room', roomID],
+    ['hotel', hotelId, 'room', roomId],
     apiKey,
     requestOptions
   )

@@ -70,7 +70,10 @@ describe('makeImpalaRequest (async)', () => {
     })
 
     it('should return null', async () => {
-      const result = await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken')
+      const result = await makeImpalaRequest(
+        ['path', 'to', 'endpoint'],
+        'testToken'
+      )
       expect(result).to.equal(null)
       expect(scope.isDone()).to.equal(true)
     })

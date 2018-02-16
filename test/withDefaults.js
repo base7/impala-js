@@ -31,12 +31,12 @@ describe('withDefaults', () => {
 
     it('should use that default apiKey', async () => {
       const { getBookings } = withDefaults({ apiKey: 'testToken' })
-      await getBookings({ hotelID: 'MY_HOTEL' })
+      await getBookings({ hotelId: 'MY_HOTEL' })
       expect(scope.isDone()).to.equal(true)
     })
   })
 
-  describe('when given a default hotelID', () => {
+  describe('when given a default hotelId', () => {
     let scope
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
@@ -53,10 +53,10 @@ describe('withDefaults', () => {
       scope.done()
     })
 
-    it('should use that default apiKey', async () => {
+    it('should use that default hotelId', async () => {
       const { getBookings } = withDefaults({
         apiKey: 'testToken',
-        hotelID: 'MY_HOTEL'
+        hotelId: 'MY_HOTEL'
       })
       await getBookings()
       expect(scope.isDone()).to.equal(true)

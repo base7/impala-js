@@ -6,7 +6,7 @@ import withDefaults from '../src/withDefaults'
 describe('withDefaults', () => {
   it('should return a copy of the API', () => {
     const expectedApiMethods = Object.keys(api)
-    const actualApiMethods = Object.keys(withDefaults())
+    const actualApiMethods = Object.keys(withDefaults({ apiKey: 'API_KEY' }))
     expectedApiMethods.forEach(method => {
       expect(actualApiMethods).to.include(method)
     })

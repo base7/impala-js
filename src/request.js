@@ -19,14 +19,21 @@ export const makeImpalaRequest = async (
 
   const url = makeImpalaUrl(path, queryParams, baseUrl)
 
-  const request = await fetch(url, {
-    ...fetchOptions,
-    headers: {
-      'User-Agent': userAgent,
-      'Authorization': `Bearer ${apiKey}`,
-      ...headers
-    }
-  })
+  let request
+  try {
+    request = await fetch(url, {
+      ...fetchOptions,
+      headers: {
+        'User-Agent': userAgent,
+        Authorization: `Bearer ${apiKey}`,
+        ...headers
+      }
+    })
+  } catch (error) {
+    throw new Error(
+      `Could not make request to Impala API: ${error.message || error}`
+    )
+  }
 
   if (request.status === 204) {
     return null

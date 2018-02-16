@@ -12,6 +12,7 @@ export const getGuests = async ({ apiKey, hotelId }, requestOptions) => {
   const guests = await makeImpalaRequest(
     ['hotel', hotelId, 'guest'],
     apiKey,
+    null,
     requestOptions
   )
 
@@ -37,6 +38,7 @@ export const getGuestById = async (
   return await makeImpalaRequest(
     ['hotel', hotelId, 'guest', guestId],
     apiKey,
+    null,
     requestOptions
   )
 }

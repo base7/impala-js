@@ -7,6 +7,7 @@ const userAgent = `${pkg.name}/${pkg.version}`
 export const makeImpalaRequest = async (
   path,
   apiKey,
+  queryParams,
   { baseUrl, headers = {}, ...fetchOptions } = {}
 ) => {
   if (!path) {
@@ -16,7 +17,7 @@ export const makeImpalaRequest = async (
     throw new Error('No apiKey was supplied')
   }
 
-  const url = makeImpalaUrl(path, baseUrl)
+  const url = makeImpalaUrl(path, queryParams, baseUrl)
 
   const request = await fetch(url, {
     ...fetchOptions,

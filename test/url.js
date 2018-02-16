@@ -18,10 +18,19 @@ describe('makeImpalaUrl', () => {
     })
   })
 
+  describe('given a set of query parameters', () => {
+    it('should return the base URL with the path and query string concatenated', () => {
+      const actual = makeImpalaUrl(['path'], { foo: 'bar', baz: 'quux' })
+      const expected = 'https://api.getimpala.com/v1/path?foo=bar&baz=quux'
+      expect(actual).to.equal(expected)
+    })
+  })
+
   describe('given an overridden base URL', () => {
     it('should use the overridden base URL instead', () => {
       const actual = makeImpalaUrl(
         ['path', 'to', 'endpoint'],
+        null,
         'http://0.0.0.0/'
       )
       const expected = 'http://0.0.0.0/path/to/endpoint'

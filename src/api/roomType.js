@@ -1,6 +1,6 @@
 import makeImpalaRequest from '../request'
 
-export const getRoomTypes = async ({ apiKey, hotelId }) => {
+export const getRoomTypes = async ({ apiKey, hotelId }, requestOptions) => {
   if (!apiKey) {
     throw new Error('getRoomTypes requires an apiKey')
   }
@@ -11,13 +11,18 @@ export const getRoomTypes = async ({ apiKey, hotelId }) => {
 
   const roomTypes = await makeImpalaRequest(
     ['hotel', hotelId, 'room-type'],
-    apiKey
+    apiKey,
+    null,
+    requestOptions
   )
 
   return []
 }
 
-export const getRoomTypeById = async ({ apiKey, hotelId, roomTypeId }) => {
+export const getRoomTypeById = async (
+  { apiKey, hotelId, roomTypeId },
+  requestOptions
+) => {
   if (!apiKey) {
     throw new Error('getRoomTypeById requires an apiKey')
   }
@@ -32,6 +37,8 @@ export const getRoomTypeById = async ({ apiKey, hotelId, roomTypeId }) => {
 
   return await makeImpalaRequest(
     ['hotel', hotelId, 'room-type', roomTypeId],
-    apiKey
+    apiKey,
+    null,
+    requestOptions
   )
 }

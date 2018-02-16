@@ -22,7 +22,7 @@ export const makeImpalaRequest = async (
     ...fetchOptions,
     headers: {
       'User-Agent': userAgent,
-      ...makeAuthorizationHeaders(apiKey),
+      'Authorization': `Bearer ${apiKey}`,
       ...headers
     }
   })
@@ -49,10 +49,5 @@ export const makeImpalaRequest = async (
   }
   return json
 }
-
-export const makeAuthorizationHeaders = token => ({
-  'X-API-Key': token,
-  Authorization: `Bearer ${token}`
-})
 
 export default makeImpalaRequest

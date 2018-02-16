@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import nock from 'nock'
-import { makeImpalaRequest, makeAuthorizationHeaders } from '../src/request'
+import { makeImpalaRequest } from '../src/request'
 
 describe('makeImpalaRequest (async)', () => {
   describe('given no parameters', () => {
@@ -34,8 +34,7 @@ describe('makeImpalaRequest (async)', () => {
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken',
-          'X-API-Key': 'testToken'
+          Authorization: 'Bearer testToken'
         }
       })
         .get('/v1/path/to/endpoint')
@@ -57,8 +56,7 @@ describe('makeImpalaRequest (async)', () => {
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken',
-          'X-API-Key': 'testToken'
+          Authorization: 'Bearer testToken'
         }
       })
         .get('/v1/path/to/endpoint')
@@ -84,8 +82,7 @@ describe('makeImpalaRequest (async)', () => {
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken',
-          'X-API-Key': 'testToken'
+          Authorization: 'Bearer testToken'
         }
       })
         .get('/v1/path/to/endpoint')
@@ -119,20 +116,5 @@ describe('makeImpalaRequest (async)', () => {
 
   describe('given an extra set of headers', () => {
     it('should fetch with the additional headers specified')
-  })
-})
-
-describe('makeAuthorizationHeaders', () => {
-  describe('given an auth token', () => {
-    let result
-    beforeEach(() => {
-      result = makeAuthorizationHeaders('testToken')
-    })
-    it('should provide an Authorization header', () => {
-      expect(result.Authorization).to.equal('Bearer testToken')
-    })
-    it('should provide an X-API-Key header', () => {
-      expect(result['X-API-Key']).to.equal('testToken')
-    })
   })
 })

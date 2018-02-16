@@ -7,8 +7,7 @@ describe('getGuests', () => {
   beforeEach(async () => {
     scope = nock('https://api.getimpala.com', {
       reqheaders: {
-        Authorization: 'Bearer testToken',
-        'X-API-Key': 'testToken'
+        Authorization: 'Bearer testToken'
       }
     })
       .get('/v1/hotel/HOTEL/guest')
@@ -30,8 +29,7 @@ describe('getGuestById', () => {
   beforeEach(async () => {
     scope = nock('https://api.getimpala.com', {
       reqheaders: {
-        Authorization: 'Bearer testToken',
-        'X-API-Key': 'testToken'
+        Authorization: 'Bearer testToken'
       }
     })
       .get('/v1/hotel/HOTEL/guest/GUEST')

@@ -17,8 +17,7 @@ describe('withDefaults', () => {
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken',
-          'X-API-Key': 'testToken'
+          Authorization: 'Bearer testToken'
         }
       })
         .get('/v1/hotel/MY_HOTEL/booking')
@@ -41,8 +40,7 @@ describe('withDefaults', () => {
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken',
-          'X-API-Key': 'testToken'
+          Authorization: 'Bearer testToken'
         }
       })
         .get('/v1/hotel/MY_HOTEL/booking')

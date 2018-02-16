@@ -1,14 +1,13 @@
 import { expect } from 'chai'
 import nock from 'nock'
-import { getBookings, getBookingByID } from '../../src/api/booking'
+import { getBookings, getBookingById } from '../../src/api/booking'
 
 describe('getBookings', () => {
   let scope
   beforeEach(async () => {
     scope = nock('https://api.getimpala.com', {
       reqheaders: {
-        Authorization: 'Bearer testToken',
-        'X-API-Key': 'testToken'
+        Authorization: 'Bearer testToken'
       }
     })
       .get('/v1/hotel/HOTEL/booking')
@@ -19,19 +18,18 @@ describe('getBookings', () => {
     scope.done()
   })
 
-  it('should call the GET /hotel/:hotelID/booking endpoint', async () => {
-    await getBookings({ apiKey: 'testToken', hotelID: 'HOTEL' })
+  it('should call the GET /hotel/:hotelId/booking endpoint', async () => {
+    await getBookings({ apiKey: 'testToken', hotelId: 'HOTEL' })
     expect(scope.isDone()).to.equal(true)
   })
 })
 
-describe('getBookingByID', () => {
+describe('getBookingById', () => {
   let scope
   beforeEach(async () => {
     scope = nock('https://api.getimpala.com', {
       reqheaders: {
-        Authorization: 'Bearer testToken',
-        'X-API-Key': 'testToken'
+        Authorization: 'Bearer testToken'
       }
     })
       .get('/v1/hotel/HOTEL/booking/BOOKING')

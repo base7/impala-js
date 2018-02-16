@@ -105,4 +105,33 @@ describe('makeImpalaRequest (async)', () => {
       expect(scope.isDone()).to.equal(true)
     })
   })
+
+  describe('given a request that returns an HTTP 404 (Not Found) error', () => {
+    let scope
+    beforeEach(async () => {
+      scope = nock('https://api.getimpala.com', {
+        reqheaders: {
+          Authorization: 'Bearer testToken'
+        }
+      })
+        .get('/v1/path/to/endpoint')
+        .reply(404, { message: 'Not yet implemented, sorry!'})
+    })
+
+    afterEach(() => {
+      scope.done()
+    })
+
+    it('should throw the error message as an Error', async () => {
+      let threw
+      try {
+        await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken')
+      } catch (e) {
+        threw = true
+        expect(e.message).to.equal('Not yet implemented, sorry!')
+      }
+      expect(threw).to.equal(true)
+      expect(scope.isDone()).to.equal(true)
+    })
+  })
 })

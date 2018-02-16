@@ -46,7 +46,7 @@ export const makeImpalaRequest = async (
     throw new Error('Impala API returned an invalid response')
   }
 
-  if (request.status === 400) {
+  if (request.status === 400 || request.status === 404) {
     throw new Error(json.message)
   }
 

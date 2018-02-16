@@ -1,6 +1,10 @@
+import formatDate from 'date-fns/format'
 import makeImpalaRequest from '../request'
 
-export const getBookings = async ({ apiKey, hotelId }, requestOptions) => {
+export const getBookings = async (
+  { apiKey, hotelId, startDate, endDate },
+  requestOptions
+) => {
   if (!apiKey) {
     throw new Error('getBookings requires an apiKey')
   }
@@ -9,10 +13,23 @@ export const getBookings = async ({ apiKey, hotelId }, requestOptions) => {
     throw new Error('getBookings requires a hotelId')
   }
 
+  if (!!startDate !== !!endDate) {
+    throw new Error(
+      'getBookings requires both startDate and endDate (or neither)'
+    )
+  }
+
+  const queryParams = startDate
+    ? {
+        startDate: formatDate(startDate, 'YYYY-MM-DD'),
+        endDate: formatDate(endDate, 'YYYY-MM-DD')
+      }
+    : null
+
   const bookings = await makeImpalaRequest(
     ['hotel', hotelId, 'booking'],
     apiKey,
-    null,
+    queryParams,
     requestOptions
   )
 

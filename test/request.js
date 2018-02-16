@@ -105,16 +105,4 @@ describe('makeImpalaRequest (async)', () => {
       expect(scope.isDone()).to.equal(true)
     })
   })
-
-  describe('given an overridden fetch method', () => {
-    it('should fetch using the overridden method')
-  })
-
-  describe('given an overridden base URL', () => {
-    it('should fetch using the overridden base URL')
-  })
-
-  describe('given an extra set of headers', () => {
-    it('should fetch with the additional headers specified')
-  })
 })

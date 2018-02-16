@@ -42,9 +42,7 @@ const hapiHotel = new Impala({
   hotelId: 'hapi'
 })
 
-hapiHotel
-  .getBookings()
-  .then(bookings => console.log('All bookings:', bookings))
+hapiHotel.getBookings().then(bookings => console.log('All bookings:', bookings))
 ```
 
 ### Working with multiple hotels
@@ -64,12 +62,47 @@ impala
 const hapiHotel = impala.getHotel('hapi')
 
 // You can then call the API methods like normal
-hapiHotel
-  .getBookings()
-  .then(bookings => console.log('All bookings:', bookings))
+hapiHotel.getBookings().then(bookings => console.log('All bookings:', bookings))
 ```
 
-### API methods
+## Making API calls
+
+All API methods accept an object as their first argument, containing the parameters for the API call. This object can be omitted if there are no arguments to set.
+
+For example:
+
+```js
+import Impala from 'impala-js'
+
+const hapiHotel = new Impala({ apiKey: 'secret', hotelId: 'hapi' })
+
+hapiHotel
+  .getBookings()
+  .then(bookings => console.log('Bookings (default date range):', bookings))
+
+hapiHotel
+  .getBookings({
+    startDate: '2018-02-03',
+    endDate: '2018-02-05'
+  })
+  .then(bookings => console.log('Bookings (for specified range):', bookings))
+```
+
+### Working with Promises
+
+The API methods all return Promises, which means you can use the `.then` (and `.catch`) callbacks to handle results (and errors), _or_ you can use new `async` / `await` syntax, where supported.
+
+```js
+async function getAllHapiGuests() {
+  try {
+    return hapiHotel.getGuests()
+  } catch (error) {
+    console.error('Something went horribly wrong!', error.stack)
+  }
+}
+```
+
+## API methods
 
 | Name              | HTTP API endpoint                                               |
 |:------------------|:----------------------------------------------------------------|
@@ -79,11 +112,11 @@ hapiHotel
 | `getGuestById`    | [`GET /v1/hotel/:hotelId/guest/:guestId`][type-guest]           |
 | `getRooms`        | [`GET /v1/hotel/:hotelId/room`][type-room]                      |
 | `getRoomById`     | [`GET /v1/hotel/:hotelId/room/:roomId`][type-room]              |
-| `getRoomTypes`    | [`GET /v1/hotel/:hotelId/room-type`][type-roomType]             |
-| `getRoomTypeById` | [`GET /v1/hotel/:hotelId/room-type/:roomTypeId`][type-roomType] |
+| `getRoomTypes`    | [`GET /v1/hotel/:hotelId/room-type`][type-roomtype]             |
+| `getRoomTypeById` | [`GET /v1/hotel/:hotelId/room-type/:roomTypeId`][type-roomtype] |
 
 [getting-started]: https://docs.getimpala.com/#getting-started
 [type-booking]: https://docs.getimpala.com/#booking
 [type-guest]: https://docs.getimpala.com/#guest
 [type-room]: https://docs.getimpala.com/#room
-[type-roomType]: https://docs.getimpala.com/#room-type
+[type-roomtype]: https://docs.getimpala.com/#room-type

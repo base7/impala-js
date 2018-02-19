@@ -4,13 +4,13 @@
   "description": "Node.js wrapper for Impala hotel PMS API",
   "main": "dist/index.js",
   "repository": "https://github.com/GetImpala/impala-js.git",
-  "License": "UNLICENSED",
+  "license": "UNLICENSED",
   "author": "Jim O'Brien <jim@jimmed.net>",
   "scripts": {
     "build": "babel src --out-dir dist",
     "watch": "yarn build --watch",
     "test": "mocha --require babel-register test test/**/*.js",
-    "beforeStartCommand": "yarn run test && yarn run build",
+    "prepublishOnly": "yarn run test && yarn run build",
     "release": "release-it"
   },
   "devDependencies": {

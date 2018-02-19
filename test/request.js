@@ -1,137 +1,137 @@
-import { expect } from 'chai'
-import nock from 'nock'
-import { makeImpalaRequest } from '../src/request'
+import { expect } from 'chai';
+import nock from 'nock';
+import { makeImpalaRequest } from '../src/request';
 
 describe('makeImpalaRequest (async)', () => {
   describe('given no parameters', () => {
     it('should throw an error', async () => {
-      let threw
+      let threw;
       try {
-        await makeImpalaRequest()
-        threw = false
+        await makeImpalaRequest();
+        threw = false;
       } catch (error) {
-        threw = true
+        threw = true;
       }
-      expect(threw).to.equal(true)
-    })
-  })
+      expect(threw).to.equal(true);
+    });
+  });
 
   describe('given a path but no auth token', () => {
     it('should throw an error', async () => {
-      let threw
+      let threw;
       try {
-        await makeImpalaRequest(['path', 'to', 'endpoint'])
-        threw = false
+        await makeImpalaRequest(['path', 'to', 'endpoint']);
+        threw = false;
       } catch (error) {
-        threw = true
+        threw = true;
       }
-      expect(threw).to.equal(true)
-    })
-  })
+      expect(threw).to.equal(true);
+    });
+  });
 
   describe('given a valid path and auth token', () => {
-    let scope
+    let scope;
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken'
-        }
+          Authorization: 'Bearer testToken',
+        },
       })
         .get('/v1/path/to/endpoint')
-        .reply(200, { test: 'success' })
-    })
+        .reply(200, { test: 'success' });
+    });
 
     afterEach(() => {
-      scope.done()
-    })
+      scope.done();
+    });
 
     it('should make a request to the correct URL, with the correct headers', async () => {
-      await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken')
-      expect(scope.isDone()).to.equal(true)
-    })
-  })
+      await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken');
+      expect(scope.isDone()).to.equal(true);
+    });
+  });
 
   describe('given a request that returns an HTTP 204 (No Content) response', () => {
-    let scope
+    let scope;
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken'
-        }
+          Authorization: 'Bearer testToken',
+        },
       })
         .get('/v1/path/to/endpoint')
-        .reply(204)
-    })
+        .reply(204);
+    });
 
     afterEach(() => {
-      scope.done()
-    })
+      scope.done();
+    });
 
     it('should return null', async () => {
       const result = await makeImpalaRequest(
         ['path', 'to', 'endpoint'],
         'testToken'
-      )
-      expect(result).to.equal(null)
-      expect(scope.isDone()).to.equal(true)
-    })
-  })
+      );
+      expect(result).to.equal(null);
+      expect(scope.isDone()).to.equal(true);
+    });
+  });
 
   describe('given a request that returns an HTTP 400 (Bad Request) error', () => {
-    let scope
+    let scope;
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken'
-        }
+          Authorization: 'Bearer testToken',
+        },
       })
         .get('/v1/path/to/endpoint')
-        .reply(400, { message: 'You did something wrong!'})
-    })
+        .reply(400, { message: 'You did something wrong!' });
+    });
 
     afterEach(() => {
-      scope.done()
-    })
+      scope.done();
+    });
 
     it('should throw the error message as an Error', async () => {
-      let threw
+      let threw;
       try {
-        await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken')
+        await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken');
       } catch (e) {
-        threw = true
-        expect(e.message).to.equal('You did something wrong!')
+        threw = true;
+        expect(e.message).to.equal('You did something wrong!');
       }
-      expect(threw).to.equal(true)
-      expect(scope.isDone()).to.equal(true)
-    })
-  })
+      expect(threw).to.equal(true);
+      expect(scope.isDone()).to.equal(true);
+    });
+  });
 
   describe('given a request that returns an HTTP 404 (Not Found) error', () => {
-    let scope
+    let scope;
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken'
-        }
+          Authorization: 'Bearer testToken',
+        },
       })
         .get('/v1/path/to/endpoint')
-        .reply(404, { message: 'Not yet implemented, sorry!'})
-    })
+        .reply(404, { message: 'Not yet implemented, sorry!' });
+    });
 
     afterEach(() => {
-      scope.done()
-    })
+      scope.done();
+    });
 
     it('should throw the error message as an Error', async () => {
-      let threw
+      let threw;
       try {
-        await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken')
+        await makeImpalaRequest(['path', 'to', 'endpoint'], 'testToken');
       } catch (e) {
-        threw = true
-        expect(e.message).to.equal('Not yet implemented, sorry!')
+        threw = true;
+        expect(e.message).to.equal('Not yet implemented, sorry!');
       }
-      expect(threw).to.equal(true)
-      expect(scope.isDone()).to.equal(true)
-    })
-  })
-})
+      expect(threw).to.equal(true);
+      expect(scope.isDone()).to.equal(true);
+    });
+  });
+});

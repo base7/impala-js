@@ -1,133 +1,133 @@
-import { expect } from 'chai'
-import nock from 'nock'
-import { getBookings, getBookingById } from '../../src/api/booking'
+import { expect } from 'chai';
+import nock from 'nock';
+import { getBookings, getBookingById } from '../../src/api/booking';
 
 describe('getBookings', () => {
-  let scope
+  let scope;
 
   afterEach(() => {
     if (scope) {
-      scope.done()
+      scope.done();
     }
-    scope = null
-  })
+    scope = null;
+  });
 
   describe('given neither a startDate nor endDate', () => {
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken'
-        }
+          Authorization: 'Bearer testToken',
+        },
       })
         .get('/v1/hotel/HOTEL/booking')
-        .reply(200, { test: 'success' })
-    })
+        .reply(200, { test: 'success' });
+    });
 
     it('should call the GET /hotel/:hotelId/booking endpoint', async () => {
-      await getBookings({ apiKey: 'testToken', hotelId: 'HOTEL' })
-      expect(scope.isDone()).to.equal(true)
-    })
-  })
+      await getBookings({ apiKey: 'testToken', hotelId: 'HOTEL' });
+      expect(scope.isDone()).to.equal(true);
+    });
+  });
 
   describe('given both a startDate and endDate (as native Dates)', () => {
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken'
-        }
+          Authorization: 'Bearer testToken',
+        },
       })
         .get('/v1/hotel/HOTEL/booking?startDate=2017-02-03&endDate=2017-03-04')
-        .reply(200, { test: 'success' })
-    })
+        .reply(200, { test: 'success' });
+    });
 
     it('should call the GET /hotel/:hotelId/booking endpoint', async () => {
       await getBookings({
         apiKey: 'testToken',
         hotelId: 'HOTEL',
         startDate: new Date(2017, 1, 3),
-        endDate: new Date(2017, 2, 4)
-      })
-      expect(scope.isDone()).to.equal(true)
-    })
-  })
+        endDate: new Date(2017, 2, 4),
+      });
+      expect(scope.isDone()).to.equal(true);
+    });
+  });
 
   describe('given both a startDate and endDate (as ISO8601 strings)', () => {
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
-          Authorization: 'Bearer testToken'
-        }
+          Authorization: 'Bearer testToken',
+        },
       })
         .get('/v1/hotel/HOTEL/booking?startDate=2017-02-03&endDate=2017-03-04')
-        .reply(200, { test: 'success' })
-    })
+        .reply(200, { test: 'success' });
+    });
 
     it('should call the GET /hotel/:hotelId/booking endpoint', async () => {
       await getBookings({
         apiKey: 'testToken',
         hotelId: 'HOTEL',
         startDate: '2017-02-03',
-        endDate: '2017-03-04'
-      })
-      expect(scope.isDone()).to.equal(true)
-    })
-  })
+        endDate: '2017-03-04',
+      });
+      expect(scope.isDone()).to.equal(true);
+    });
+  });
 
   describe('given just a startDate', () => {
     it('should throw an error', async () => {
-      let threw
+      let threw;
       try {
         await getBookings({
           apiKey: 'testToken',
           hotelId: 'HOTEL',
-          startDate: new Date()
-        })
+          startDate: new Date(),
+        });
       } catch (error) {
-        threw = true
+        threw = true;
       }
-      expect(threw).to.equal(true)
-    })
-  })
+      expect(threw).to.equal(true);
+    });
+  });
 
   describe('given just a endDate', () => {
     it('should throw an error', async () => {
-      let threw
+      let threw;
       try {
         await getBookings({
           apiKey: 'testToken',
           hotelId: 'HOTEL',
-          endDate: new Date()
-        })
+          endDate: new Date(),
+        });
       } catch (error) {
-        threw = true
+        threw = true;
       }
-      expect(threw).to.equal(true)
-    })
-  })
-})
+      expect(threw).to.equal(true);
+    });
+  });
+});
 
 describe('getBookingById', () => {
-  let scope
+  let scope;
   beforeEach(async () => {
     scope = nock('https://api.getimpala.com', {
       reqheaders: {
-        Authorization: 'Bearer testToken'
-      }
+        Authorization: 'Bearer testToken',
+      },
     })
       .get('/v1/hotel/HOTEL/booking/BOOKING')
-      .reply(200, { test: 'success' })
-  })
+      .reply(200, { test: 'success' });
+  });
 
   afterEach(() => {
-    scope.done()
-  })
+    scope.done();
+  });
 
   it('should call the GET /hotel/:hotelId/booking/:bookingId endpoint', async () => {
     await getBookingById({
       apiKey: 'testToken',
       hotelId: 'HOTEL',
-      bookingId: 'BOOKING'
-    })
-    expect(scope.isDone()).to.equal(true)
-  })
-})
+      bookingId: 'BOOKING',
+    });
+    expect(scope.isDone()).to.equal(true);
+  });
+});

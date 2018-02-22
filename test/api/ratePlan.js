@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import nock from 'nock';
-import { getRatePlans, getRatePlanById } from '../../src/api/ratePlan';
+import { getRatePlans, getRatePlanById } from '../../src/api';
 
 describe('getRatePlans', () => {
   let scope;

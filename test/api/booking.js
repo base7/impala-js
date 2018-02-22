@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import nock from 'nock';
-import { getBookings, getBookingById } from '../../src/api/booking';
+import { getBookings, getBookingById } from '../../src/api';
 
 describe('getBookings', () => {
   let scope;

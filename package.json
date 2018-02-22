@@ -1,5 +1,5 @@
 {
-  "name": "impala-js",
+  "name": "@get-impala/impala-js",
   "version": "0.3.2",
   "description": "Node.js wrapper for Impala hotel PMS API",
   "main": "dist/index.js",

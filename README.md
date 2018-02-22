@@ -5,11 +5,11 @@
 It's as simple as:
 
 ```bash
-$ yarn add impala-js
+$ yarn add @get-impala/impala-js
 
 # or, if you prefer
 
-$ npm install --save impala-js
+$ npm install --save @get-impala/impala-js
 ```
 
 ## Obtaining an API key

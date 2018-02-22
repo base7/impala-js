@@ -4,3 +4,4 @@ export * from './room';
 export * from './roomType';
 export * from './rate';
 export * from './ratePlan';
+export * from './ratePrice';

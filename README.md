@@ -114,9 +114,15 @@ async function getAllHapiGuests() {
 | `getRoomById`     | [`GET /v1/hotel/:hotelId/room/:roomId`][type-room]              |
 | `getRoomTypes`    | [`GET /v1/hotel/:hotelId/room-type`][type-roomtype]             |
 | `getRoomTypeById` | [`GET /v1/hotel/:hotelId/room-type/:roomTypeId`][type-roomtype] |
+| `getRates`        | [`GET /v1/hotel/:hotelId/rate`][type-rate]                      |
+| `getRateById`     | [`GET /v1/hotel/:hotelId/rate/:rateId`][type-rate]              |
+| `getRatePlans`    | [`GET /v1/hotel/:hotelId/rate-plan`][type-rateplan]             |
+| `getRatePlanById` | [`GET /v1/hotel/:hotelId/rate-plan/:ratePlanId`][type-rateplan] |
 
 [getting-started]: https://docs.getimpala.com/#getting-started
 [type-booking]: https://docs.getimpala.com/#booking
 [type-guest]: https://docs.getimpala.com/#guest
 [type-room]: https://docs.getimpala.com/#room
 [type-roomtype]: https://docs.getimpala.com/#room-type
+[type-rate]: https://docs.getimpala.com/#rate
+[type-rateplan]: https://docs.getimpala.com/#rate-plan

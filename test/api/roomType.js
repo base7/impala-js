@@ -41,10 +41,9 @@ describe('getRoomTypeById', () => {
   });
 
   it('should call the GET /hotel/:hotelId/room-type/:roomTypeId endpoint', async () => {
-    await getRoomTypeById({
+    await getRoomTypeById('ROOMTYPE', {
       apiKey: 'testToken',
       hotelId: 'HOTEL',
-      roomTypeId: 'ROOMTYPE',
     });
     expect(scope.isDone()).to.equal(true);
   });

@@ -41,10 +41,9 @@ describe('getRateById', () => {
   });
 
   it('should call the GET /hotel/:hotelId/rate/:rateId endpoint', async () => {
-    await getRateById({
+    await getRateById('RATE', {
       apiKey: 'testToken',
       hotelId: 'HOTEL',
-      rateId: 'RATE',
     });
     expect(scope.isDone()).to.equal(true);
   });

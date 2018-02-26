@@ -123,10 +123,9 @@ describe('getBookingById', () => {
   });
 
   it('should call the GET /hotel/:hotelId/booking/:bookingId endpoint', async () => {
-    await getBookingById({
+    await getBookingById('BOOKING', {
       apiKey: 'testToken',
       hotelId: 'HOTEL',
-      bookingId: 'BOOKING',
     });
     expect(scope.isDone()).to.equal(true);
   });

@@ -69,6 +69,8 @@ hapiHotel.getBookings().then(bookings => console.log('All bookings:', bookings))
 
 All API methods accept an object as their first argument, containing the parameters for the API call. This object can be omitted if there are no arguments to set.
 
+API methods that take an ID have the ID as the first argument.
+
 For example:
 
 ```js
@@ -86,6 +88,10 @@ hapiHotel
     endDate: '2018-02-05'
   })
   .then(bookings => console.log('Bookings (for specified range):', bookings))
+
+hapiHotel
+  .getBookingById('c4be6570-15fc-4926-b339-446db4800f81')
+  .then(booking => console.log('Booking', booking))
 ```
 
 ### Working with Promises

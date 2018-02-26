@@ -18,7 +18,8 @@ export const getRates = async ({ apiKey, hotelId }, requestOptions) => {
 };
 
 export const getRateById = async (
-  { apiKey, hotelId, rateId },
+  rateId,
+  { apiKey, hotelId },
   requestOptions
 ) => {
   if (!apiKey) {

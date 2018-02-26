@@ -18,7 +18,8 @@ export const getRoomTypes = async ({ apiKey, hotelId }, requestOptions) => {
 };
 
 export const getRoomTypeById = async (
-  { apiKey, hotelId, roomTypeId },
+  roomTypeId,
+  { apiKey, hotelId },
   requestOptions
 ) => {
   if (!apiKey) {

@@ -37,7 +37,8 @@ export const getBookings = async (
 };
 
 export const getBookingById = async (
-  { apiKey, hotelId, bookingId },
+  bookingId,
+  { apiKey, hotelId },
   requestOptions
 ) => {
   if (!apiKey) {

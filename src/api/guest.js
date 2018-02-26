@@ -20,7 +20,8 @@ export const getGuests = async ({ apiKey, hotelId }, requestOptions) => {
 };
 
 export const getGuestById = async (
-  { apiKey, hotelId, guestId },
+  guestId,
+  { apiKey, hotelId },
   requestOptions
 ) => {
   if (!apiKey) {

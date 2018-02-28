@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "repository": "https://github.com/GetImpala/impala-js.git",
   "license": "UNLICENSED",
-  "author": "Jim O'Brien <jim@jimmed.net>",
+  "author": "Impala",
   "scripts": {
     "build": "babel src --out-dir dist",
     "watch": "yarn build --watch",

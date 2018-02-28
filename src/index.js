@@ -1,7 +1,13 @@
 import * as api from './api';
 import withDefaults from './withDefaults';
 
-const Impala = function({ apiKey, hotelId }) {
+const Impala = function(options) {
+  if (!options || !options.apiKey) {
+    throw new Error('apiKey is required when instantiating');
+  }
+
+  const { apiKey, hotelId } = options;
+
   const impala = {
     ...withDefaults({ apiKey, hotelId }),
   };

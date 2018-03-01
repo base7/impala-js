@@ -1,4 +1,5 @@
 # Impala API Node.js SDK
+[![Build Status](https://travis-ci.org/GetImpala/impala-js.svg?branch=master)](https://travis-ci.org/GetImpala/impala-js)
 
 ## Installation
 

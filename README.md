@@ -1,5 +1,6 @@
 # Impala API Node.js SDK
 [![Build Status](https://travis-ci.org/GetImpala/impala-js.svg?branch=master)](https://travis-ci.org/GetImpala/impala-js)
+[![Maintainability](https://api.codeclimate.com/v1/badges/cc2ef6e1ff5bbfb051dd/maintainability)](https://codeclimate.com/github/GetImpala/impala-js/maintainability)
 
 ## Installation
 

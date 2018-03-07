@@ -32,7 +32,7 @@ describe('getRoomAvailabilityById', () => {
         Authorization: 'Bearer testToken',
       },
     })
-      .get('/v1/hotel/HOTEL/room-availability/RATEPRICE')
+      .get('/v1/hotel/HOTEL/room-availability/ROOMAVAILABILITY')
       .reply(200, { test: 'success' });
   });
 
@@ -41,7 +41,7 @@ describe('getRoomAvailabilityById', () => {
   });
 
   it('should call the GET /hotel/:hotelId/room-availability/:roomAvailabilityId endpoint', async () => {
-    await getRoomAvailabilityById('RATEPRICE', {
+    await getRoomAvailabilityById('ROOMAVAILABILITY', {
       apiKey: 'testToken',
       hotelId: 'HOTEL',
     });

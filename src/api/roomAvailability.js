@@ -1,6 +1,10 @@
+import formatDate from 'date-fns/format';
 import makeImpalaRequest from '../request';
 
-export const getRoomAvailabilities = async ({ apiKey, hotelId }, requestOptions) => {
+export const getRoomAvailabilities = async (
+  { apiKey, hotelId, roomId, startDate, endDate },
+  requestOptions
+) => {
   if (!apiKey) {
     throw new Error('getRoomAvailabilities requires an apiKey');
   }
@@ -9,35 +13,29 @@ export const getRoomAvailabilities = async ({ apiKey, hotelId }, requestOptions)
     throw new Error('getRoomAvailabilities requires a hotelId');
   }
 
-  return await makeImpalaRequest(
-    ['hotel', hotelId, 'room-availability'],
-    apiKey,
-    null,
-    requestOptions
-  );
-};
-
-export const getRoomAvailabilityById = async (
-  roomAvailabilityId,
-  { apiKey, hotelId },
-  requestOptions
-) => {
-  if (!apiKey) {
-    throw new Error('getRoomAvailabilityById requires an apiKey');
+  if (!!startDate !== !!endDate) {
+    throw new Error(
+      'getRoomAvailabilities requires both startDate and endDate (or neither)'
+    );
   }
 
-  if (!hotelId) {
-    throw new Error('getRoomAvailabilityById requires a hotelId');
+  let queryParams = {};
+
+  if (startDate) {
+    queryParams = {
+      ...queryParams,
+      startDate: formatDate(startDate, 'YYYY-MM-DD'),
+      endDate: formatDate(endDate, 'YYYY-MM-DD'),
+    };
   }
 
-  if (!roomAvailabilityId) {
-    throw new Error('getRoomAvailabilityById requires a roomAvailabilityId');
-  }
+  queryParams = queryParams || null;
 
-  return await makeImpalaRequest(
-    ['hotel', hotelId, 'room-availability', roomAvailabilityId],
-    apiKey,
-    null,
-    requestOptions
-  );
+  const route = ['hotel', hotelId, 'room'];
+  if (roomId) {
+    route.push(roomId);
+  }
+  route.push('availability');
+
+  return await makeImpalaRequest(route, apiKey, queryParams, requestOptions);
 };

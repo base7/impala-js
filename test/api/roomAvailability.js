@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import nock from 'nock';
-import { getRatePrices, getRatePriceById } from '../../src/api';
+import { getRoomAvailabilities } from '../../src/api';
 
-describe('getRatePrices', () => {
+describe('getRoomAvailabilities', () => {
   let scope;
 
   afterEach(() => {
@@ -19,53 +19,32 @@ describe('getRatePrices', () => {
           Authorization: 'Bearer testToken',
         },
       })
-        .get('/v1/hotel/HOTEL/rate/price')
+        .get('/v1/hotel/HOTEL/room/availability')
         .reply(200, { test: 'success' });
     });
 
-    it('should call the GET /hotel/:hotelId/rate/price endpoint', async () => {
-      await getRatePrices({ apiKey: 'testToken', hotelId: 'HOTEL' });
+    it('should call the GET /hotel/:hotelId/room/availability endpoint', async () => {
+      await getRoomAvailabilities({ apiKey: 'testToken', hotelId: 'HOTEL' });
       expect(scope.isDone()).to.equal(true);
     });
   });
 
-  describe('given an rateId', () => {
+  describe('given a roomId', () => {
     beforeEach(async () => {
       scope = nock('https://api.getimpala.com', {
         reqheaders: {
           Authorization: 'Bearer testToken',
         },
       })
-        .get('/v1/hotel/HOTEL/rate/456/price')
+        .get('/v1/hotel/HOTEL/room/ROOMID/availability')
         .reply(200, { test: 'success' });
     });
 
-    it('should call the GET /hotel/:hotelId/rate/456/price endpoint', async () => {
-      await getRatePrices({
+    it('should call the GET /hotel/:hotelId/room/ROOMID/availability endpoint', async () => {
+      await getRoomAvailabilities({
         apiKey: 'testToken',
         hotelId: 'HOTEL',
-        rateId: 456,
-      });
-      expect(scope.isDone()).to.equal(true);
-    });
-  });
-
-  describe('given an roomTypeId', () => {
-    beforeEach(async () => {
-      scope = nock('https://api.getimpala.com', {
-        reqheaders: {
-          Authorization: 'Bearer testToken',
-        },
-      })
-        .get('/v1/hotel/HOTEL/rate/price?roomTypeId=123')
-        .reply(200, { test: 'success' });
-    });
-
-    it('should call the GET /hotel/:hotelId/rate/price?roomTypeId=123 endpoint', async () => {
-      await getRatePrices({
-        apiKey: 'testToken',
-        hotelId: 'HOTEL',
-        roomTypeId: 123,
+        roomId: 'ROOMID',
       });
       expect(scope.isDone()).to.equal(true);
     });
@@ -79,13 +58,13 @@ describe('getRatePrices', () => {
         },
       })
         .get(
-          '/v1/hotel/HOTEL/rate/price?startDate=2017-02-03&endDate=2017-03-04'
+          '/v1/hotel/HOTEL/room/availability?startDate=2017-02-03&endDate=2017-03-04'
         )
         .reply(200, { test: 'success' });
     });
 
-    it('should call the GET /hotel/:hotelId/rate/price endpoint', async () => {
-      await getRatePrices({
+    it('should call the GET /hotel/:hotelId/room/availability endpoint', async () => {
+      await getRoomAvailabilities({
         apiKey: 'testToken',
         hotelId: 'HOTEL',
         startDate: new Date(2017, 1, 3),
@@ -103,13 +82,13 @@ describe('getRatePrices', () => {
         },
       })
         .get(
-          '/v1/hotel/HOTEL/rate/price?startDate=2017-02-03&endDate=2017-03-04'
+          '/v1/hotel/HOTEL/room/availability?startDate=2017-02-03&endDate=2017-03-04'
         )
         .reply(200, { test: 'success' });
     });
 
-    it('should call the GET /hotel/:hotelId/rate/price endpoint', async () => {
-      await getRatePrices({
+    it('should call the GET /hotel/:hotelId/room/availability endpoint', async () => {
+      await getRoomAvailabilities({
         apiKey: 'testToken',
         hotelId: 'HOTEL',
         startDate: '2017-02-03',
@@ -123,7 +102,7 @@ describe('getRatePrices', () => {
     it('should throw an error', async () => {
       let threw;
       try {
-        await getRatePrices({
+        await getRoomAvailabilities({
           apiKey: 'testToken',
           hotelId: 'HOTEL',
           startDate: new Date(),
@@ -139,7 +118,7 @@ describe('getRatePrices', () => {
     it('should throw an error', async () => {
       let threw;
       try {
-        await getRatePrices({
+        await getRoomAvailabilities({
           apiKey: 'testToken',
           hotelId: 'HOTEL',
           endDate: new Date(),

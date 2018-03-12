@@ -1,29 +1,25 @@
 import formatDate from 'date-fns/format';
 import makeImpalaRequest from '../request';
 
-export const getRatePrices = async (
-  { apiKey, hotelId, rateId, roomTypeId, startDate, endDate },
+export const getRoomAvailabilities = async (
+  { apiKey, hotelId, roomId, startDate, endDate },
   requestOptions
 ) => {
   if (!apiKey) {
-    throw new Error('getRatePrices requires an apiKey');
+    throw new Error('getRoomAvailabilities requires an apiKey');
   }
 
   if (!hotelId) {
-    throw new Error('getRatePrices requires a hotelId');
+    throw new Error('getRoomAvailabilities requires a hotelId');
   }
 
   if (!!startDate !== !!endDate) {
     throw new Error(
-      'getRatePrices requires both startDate and endDate (or neither)'
+      'getRoomAvailabilities requires both startDate and endDate (or neither)'
     );
   }
 
   let queryParams = {};
-
-  if (roomTypeId) {
-    queryParams = { ...queryParams, roomTypeId };
-  }
 
   if (startDate) {
     queryParams = {
@@ -35,11 +31,11 @@ export const getRatePrices = async (
 
   queryParams = queryParams || null;
 
-  const route = ['hotel', hotelId, 'rate'];
-  if (rateId) {
-    route.push(rateId);
+  const route = ['hotel', hotelId, 'room'];
+  if (roomId) {
+    route.push(roomId);
   }
-  route.push('price');
+  route.push('availability');
 
   return await makeImpalaRequest(route, apiKey, queryParams, requestOptions);
 };

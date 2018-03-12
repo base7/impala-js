@@ -112,27 +112,30 @@ async function getAllHapiGuests() {
 
 ## API methods
 
-| Name               | HTTP API endpoint                                                  |
-|:-------------------|:-------------------------------------------------------------------|
-| `getBookings`      | [`GET /v1/hotel/:hotelId/booking`][type-booking]                   |
-| `getBookingById`   | [`GET /v1/hotel/:hotelId/booking/:bookingId`][type-booking]        |
-| `getGuests`        | [`GET /v1/hotel/:hotelId/guest`][type-guest]                       |
-| `getGuestById`     | [`GET /v1/hotel/:hotelId/guest/:guestId`][type-guest]              |
-| `getRooms`         | [`GET /v1/hotel/:hotelId/room`][type-room]                         |
-| `getRoomById`      | [`GET /v1/hotel/:hotelId/room/:roomId`][type-room]                 |
-| `getRoomTypes`     | [`GET /v1/hotel/:hotelId/room-type`][type-roomtype]                |
-| `getRoomTypeById`  | [`GET /v1/hotel/:hotelId/room-type/:roomTypeId`][type-roomtype]    |
-| `getRates`         | [`GET /v1/hotel/:hotelId/rate`][type-rate]                         |
-| `getRateById`      | [`GET /v1/hotel/:hotelId/rate/:rateId`][type-rate]                 |
-| `getRatePlans`     | [`GET /v1/hotel/:hotelId/rate-plan`][type-rateplan]                |
-| `getRatePlanById`  | [`GET /v1/hotel/:hotelId/rate-plan/:ratePlanId`][type-rateplan]    |
-| `getRatePrices`    | [`GET /v1/hotel/:hotelId/rate/price`][type-rateprice]              |
-| `getRatePrices`    | [`GET /v1/hotel/:hotelId/rate/:rateId/price`][type-rateprice]      |
+| Name                    | HTTP API endpoint                                                           |
+|:------------------------|:----------------------------------------------------------------------------|
+| `getBookings`           | [`GET /v1/hotel/:hotelId/booking`][type-booking]                            |
+| `getBookingById`        | [`GET /v1/hotel/:hotelId/booking/:bookingId`][type-booking]                 |
+| `getGuests`             | [`GET /v1/hotel/:hotelId/guest`][type-guest]                                |
+| `getGuestById`          | [`GET /v1/hotel/:hotelId/guest/:guestId`][type-guest]                       |
+| `getRooms`              | [`GET /v1/hotel/:hotelId/room`][type-room]                                  |
+| `getRoomById`           | [`GET /v1/hotel/:hotelId/room/:roomId`][type-room]                          |
+| `getRoomAvailabilities` | [`GET /v1/hotel/:hotelId/room/availability`][type-roomavailability]         |
+| `getRoomAvailabilities` | [`GET /v1/hotel/:hotelId/room/:roomId/availability`][type-roomavailability] |
+| `getRoomTypes`          | [`GET /v1/hotel/:hotelId/room-type`][type-roomtype]                         |
+| `getRoomTypeById`       | [`GET /v1/hotel/:hotelId/room-type/:roomTypeId`][type-roomtype]             |
+| `getRates`              | [`GET /v1/hotel/:hotelId/rate`][type-rate]                                  |
+| `getRateById`           | [`GET /v1/hotel/:hotelId/rate/:rateId`][type-rate]                          |
+| `getRatePlans`          | [`GET /v1/hotel/:hotelId/rate-plan`][type-rateplan]                         |
+| `getRatePlanById`       | [`GET /v1/hotel/:hotelId/rate-plan/:ratePlanId`][type-rateplan]             |
+| `getRatePrices`         | [`GET /v1/hotel/:hotelId/rate/price`][type-rateprice]                       |
+| `getRatePrices`         | [`GET /v1/hotel/:hotelId/rate/:rateId/price`][type-rateprice]               |
 
 [getting-started]: https://docs.getimpala.com/#getting-started
 [type-booking]: https://docs.getimpala.com/#booking
 [type-guest]: https://docs.getimpala.com/#guest
 [type-room]: https://docs.getimpala.com/#room
+[type-roomavailability]: https://docs.getimpala.com/#room-availability
 [type-roomtype]: https://docs.getimpala.com/#room-type
 [type-rate]: https://docs.getimpala.com/#rate
 [type-rateplan]: https://docs.getimpala.com/#rate-plan

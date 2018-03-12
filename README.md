@@ -128,8 +128,8 @@ async function getAllHapiGuests() {
 | `getRateById`           | [`GET /v1/hotel/:hotelId/rate/:rateId`][type-rate]                          |
 | `getRatePlans`          | [`GET /v1/hotel/:hotelId/rate-plan`][type-rateplan]                         |
 | `getRatePlanById`       | [`GET /v1/hotel/:hotelId/rate-plan/:ratePlanId`][type-rateplan]             |
-| `getRatePrices`         | [`GET /v1/hotel/:hotelId/rate-price`][type-rateprice]                       |
-| `getRatePriceById`      | [`GET /v1/hotel/:hotelId/rate-price/:ratePriceId`][type-rateprice]          |
+| `getRatePrices`         | [`GET /v1/hotel/:hotelId/rate/price`][type-rateprice]                       |
+| `getRatePrices`         | [`GET /v1/hotel/:hotelId/rate/:rateId/price`][type-rateprice]               |
 
 [getting-started]: https://docs.getimpala.com/#getting-started
 [type-booking]: https://docs.getimpala.com/#booking

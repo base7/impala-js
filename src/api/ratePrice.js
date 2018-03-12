@@ -1,6 +1,10 @@
+import formatDate from 'date-fns/format';
 import makeImpalaRequest from '../request';
 
-export const getRatePrices = async ({ apiKey, hotelId }, requestOptions) => {
+export const getRatePrices = async (
+  { apiKey, hotelId, rateId, roomTypeId, startDate, endDate },
+  requestOptions
+) => {
   if (!apiKey) {
     throw new Error('getRatePrices requires an apiKey');
   }
@@ -9,35 +13,33 @@ export const getRatePrices = async ({ apiKey, hotelId }, requestOptions) => {
     throw new Error('getRatePrices requires a hotelId');
   }
 
-  return await makeImpalaRequest(
-    ['hotel', hotelId, 'rate-price'],
-    apiKey,
-    null,
-    requestOptions
-  );
-};
-
-export const getRatePriceById = async (
-  ratePriceId,
-  { apiKey, hotelId },
-  requestOptions
-) => {
-  if (!apiKey) {
-    throw new Error('getRatePriceById requires an apiKey');
+  if (!!startDate !== !!endDate) {
+    throw new Error(
+      'getRatePrices requires both startDate and endDate (or neither)'
+    );
   }
 
-  if (!hotelId) {
-    throw new Error('getRatePriceById requires a hotelId');
+  let queryParams = {};
+
+  if (roomTypeId) {
+    queryParams = { ...queryParams, roomTypeId };
   }
 
-  if (!ratePriceId) {
-    throw new Error('getRatePriceById requires a ratePriceId');
+  if (startDate) {
+    queryParams = {
+      ...queryParams,
+      startDate: formatDate(startDate, 'YYYY-MM-DD'),
+      endDate: formatDate(endDate, 'YYYY-MM-DD'),
+    };
   }
 
-  return await makeImpalaRequest(
-    ['hotel', hotelId, 'rate-price', ratePriceId],
-    apiKey,
-    null,
-    requestOptions
-  );
+  queryParams = queryParams || null;
+
+  const route = ['hotel', hotelId, 'rate'];
+  if (rateId) {
+    route.push(rateId);
+  }
+  route.push('price');
+
+  return await makeImpalaRequest(route, apiKey, queryParams, requestOptions);
 };

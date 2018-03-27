@@ -1,0 +1,33 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8-browsers
+    working_directory: ~/impala-js
+    steps:
+      - checkout
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Setup dependencies
+          command: yarn
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Run tests
+          command: |
+            ./cc-test-reporter before-build
+            yarn test
+            ./cc-test-reporter after-build --exit-code $?
+workflows:
+  version: 2
+  build-test:
+    jobs:
+      - build

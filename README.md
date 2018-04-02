@@ -115,29 +115,32 @@ async function getAllHapiGuests() {
 
 | Name                    | HTTP API endpoint                                                           |
 |:------------------------|:----------------------------------------------------------------------------|
-| `getBookings`           | [`GET /v1/hotel/:hotelId/booking`][type-booking]                            |
 | `getBookingById`        | [`GET /v1/hotel/:hotelId/booking/:bookingId`][type-booking]                 |
-| `getGuests`             | [`GET /v1/hotel/:hotelId/guest`][type-guest]                                |
+| `getBookings`           | [`GET /v1/hotel/:hotelId/booking`][type-booking]                            |
 | `getGuestById`          | [`GET /v1/hotel/:hotelId/guest/:guestId`][type-guest]                       |
-| `getRooms`              | [`GET /v1/hotel/:hotelId/room`][type-room]                                  |
-| `getRoomById`           | [`GET /v1/hotel/:hotelId/room/:roomId`][type-room]                          |
-| `getRoomAvailabilities` | [`GET /v1/hotel/:hotelId/room/availability`][type-roomavailability]         |
-| `getRoomAvailabilities` | [`GET /v1/hotel/:hotelId/room/:roomId/availability`][type-roomavailability] |
-| `getRoomTypes`          | [`GET /v1/hotel/:hotelId/room-type`][type-roomtype]                         |
-| `getRoomTypeById`       | [`GET /v1/hotel/:hotelId/room-type/:roomTypeId`][type-roomtype]             |
-| `getRates`              | [`GET /v1/hotel/:hotelId/rate`][type-rate]                                  |
+| `getGuests`             | [`GET /v1/hotel/:hotelId/guest`][type-guest]                                |
 | `getRateById`           | [`GET /v1/hotel/:hotelId/rate/:rateId`][type-rate]                          |
-| `getRatePlans`          | [`GET /v1/hotel/:hotelId/rate-plan`][type-rateplan]                         |
 | `getRatePlanById`       | [`GET /v1/hotel/:hotelId/rate-plan/:ratePlanId`][type-rateplan]             |
-| `getRatePrices`         | [`GET /v1/hotel/:hotelId/rate/price`][type-rateprice]                       |
+| `getRatePlans`          | [`GET /v1/hotel/:hotelId/rate-plan`][type-rateplan]                         |
 | `getRatePrices`         | [`GET /v1/hotel/:hotelId/rate/:rateId/price`][type-rateprice]               |
+| `getRatePrices`         | [`GET /v1/hotel/:hotelId/rate/price`][type-rateprice]                       |
+| `getRates`              | [`GET /v1/hotel/:hotelId/rate`][type-rate]                                  |
+| `getRoomAvailabilities` | [`GET /v1/hotel/:hotelId/room/:roomId/availability`][type-roomavailability] |
+| `getRoomAvailabilities` | [`GET /v1/hotel/:hotelId/room/availability`][type-roomavailability]         |
+| `getRoomById`           | [`GET /v1/hotel/:hotelId/room/:roomId`][type-room]                          |
+| `getRoomTypeAvailabilities` | [`GET /v1/hotel/:hotelId/room-type/:roomTypeId/availability`][type-roomtypeavailability] |
+| `getRoomTypeAvailabilities` | [`GET /v1/hotel/:hotelId/room-type/availability`][type-roomtypeavailability]             |
+| `getRoomTypeById`       | [`GET /v1/hotel/:hotelId/room-type/:roomTypeId`][type-roomtype]             |
+| `getRoomTypes`          | [`GET /v1/hotel/:hotelId/room-type`][type-roomtype]                         |
+| `getRooms`              | [`GET /v1/hotel/:hotelId/room`][type-room]                                  |
 
 [getting-started]: https://docs.getimpala.com/#getting-started
 [type-booking]: https://docs.getimpala.com/#booking
 [type-guest]: https://docs.getimpala.com/#guest
-[type-room]: https://docs.getimpala.com/#room
-[type-roomavailability]: https://docs.getimpala.com/#room-availability
-[type-roomtype]: https://docs.getimpala.com/#room-type
 [type-rate]: https://docs.getimpala.com/#rate
 [type-rateplan]: https://docs.getimpala.com/#rate-plan
 [type-rateprice]: https://docs.getimpala.com/#rate-price
+[type-room]: https://docs.getimpala.com/#room
+[type-roomavailability]: https://docs.getimpala.com/#room-availability
+[type-roomtype]: https://docs.getimpala.com/#room-type
+[type-roomtypeavailability]: https://docs.getimpala.com/#room-type-availability

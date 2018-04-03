@@ -6,3 +6,4 @@ export * from './ratePrice';
 export * from './room';
 export * from './roomAvailability';
 export * from './roomType';
+export * from './roomTypeAvailability';

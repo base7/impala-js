@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import nock from 'nock';
-import { getBookings, getBookingById } from '../../src/api';
+import { getBookings, getBookingById, updateBookingById } from '../../src/api';
 
 describe('getBookings', () => {
   let scope;
@@ -127,6 +127,63 @@ describe('getBookingById', () => {
       apiKey: 'testToken',
       hotelId: 'HOTEL',
     });
+    expect(scope.isDone()).to.equal(true);
+  });
+});
+
+describe('updateBookingById', () => {
+  let scope;
+  beforeEach(async () => {
+    scope = nock('https://api.getimpala.com', {
+      reqheaders: {
+        Authorization: 'Bearer testToken',
+        'Content-Type': 'application/json',
+      },
+    })
+      .patch('/v1/hotel/HOTEL/booking/BOOKING')
+      .reply(function(uri, requestBody) {
+        return [200, requestBody, this.req.headers];
+      });
+  });
+
+  afterEach(() => {
+    scope.done();
+  });
+
+  it('should call the PATCH /hotel/:hotelId/booking/:bookingId endpoint', async () => {
+    const body = { test: 'success' };
+    const result = await updateBookingById('BOOKING', body, {
+      apiKey: 'testToken',
+      hotelId: 'HOTEL',
+    });
+    expect(scope.isDone()).to.equal(true);
+    expect(result).to.deep.equal(body);
+  });
+
+  it('should retain headers provided', async () => {
+    scope.matchHeader('Test', 'foo');
+    const result = await updateBookingById(
+      'BOOKING',
+      {},
+      {
+        apiKey: 'testToken',
+        hotelId: 'HOTEL',
+      },
+      { headers: { Test: 'foo' } }
+    );
+    expect(scope.isDone()).to.equal(true);
+  });
+
+  it("shouldn't allow method to be overridden", async () => {
+    const result = await updateBookingById(
+      'BOOKING',
+      {},
+      {
+        apiKey: 'testToken',
+        hotelId: 'HOTEL',
+      },
+      { headers: { Test: 'foo' }, method: 'PUT' }
+    );
     expect(scope.isDone()).to.equal(true);
   });
 });

@@ -60,3 +60,39 @@ export const getBookingById = async (
     requestOptions
   );
 };
+
+export const updateBookingById = async (
+  bookingId,
+  body,
+  { apiKey, hotelId },
+  requestOptions = {}
+) => {
+  if (!apiKey) {
+    throw new Error('updateBookingById requires an apiKey');
+  }
+
+  if (!hotelId) {
+    throw new Error('updateBookingById requires a hotelId');
+  }
+
+  if (!bookingId) {
+    throw new Error('updateBookingById requires a bookingId');
+  }
+
+  requestOptions = {
+    ...requestOptions,
+    headers: {
+      ...requestOptions.headers,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+    method: 'PATCH',
+  };
+
+  return await makeImpalaRequest(
+    ['hotel', hotelId, 'booking', bookingId],
+    apiKey,
+    null,
+    requestOptions
+  );
+};

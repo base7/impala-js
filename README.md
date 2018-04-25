@@ -74,6 +74,8 @@ API methods accept an object as their first argument, containing the parameters 
 
 API methods that take an ID have the ID as the first argument.
 
+API methods that update a resource take the object representation of a [JSON merge patch](https://tools.ietf.org/html/rfc7386) as their second argument. 
+
 For example:
 
 ```js
@@ -117,6 +119,7 @@ async function getAllHapiGuests() {
 |:------------------------|:----------------------------------------------------------------------------|
 | `getBookingById`        | [`GET /v1/hotel/:hotelId/booking/:bookingId`][type-booking]                 |
 | `getBookings`           | [`GET /v1/hotel/:hotelId/booking`][type-booking]                            |
+| `updateBookingById`     | [`PATCH /v1/hotel/:hotelId/booking/:bookingId`][type-booking]               |
 | `getGuestById`          | [`GET /v1/hotel/:hotelId/guest/:guestId`][type-guest]                       |
 | `getGuests`             | [`GET /v1/hotel/:hotelId/guest`][type-guest]                                |
 | `getRateById`           | [`GET /v1/hotel/:hotelId/rate/:rateId`][type-rate]                          |

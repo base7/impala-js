@@ -25,7 +25,7 @@ found in the ['Getting Started'][getting-started] section of the Impala develope
 After installation, you can import the API using ES6 module syntax:
 
 ```js
-import Impala from 'impala-js'
+import Impala from '@get-impala/impala-js'
 ```
 
 or, alternatively, using commonJS:

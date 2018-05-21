@@ -1,6 +1,6 @@
 {
   "name": "@get-impala/impala-js",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "description": "Node.js wrapper for Impala hotel PMS API",
   "main": "dist/index.js",
   "repository": "https://github.com/GetImpala/impala-js.git",
